@@ -65,5 +65,5 @@ DDE launching time is: 1 seconds
 * `AUTO_LOGIN_USER=deepin`: the user name which is used to launch DDE
 * `DEBUG=1`: if DEBUG contains non-empty string, run dde-launch-time in tracing mode
 
-If you want to figure out what casuse DDE took so long to launch, the kernel
+If you want to figure out why DDE took so long to launch, the kernel
 tracing log is saved in currently directory, named dde-launch-time.log.
