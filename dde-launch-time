@@ -9,11 +9,13 @@ if [[ 0 != $UID ]]; then
     exit 1
 fi
 
-PS4="> ${0##*/}: "
-set -x
 set -e
+if [[ "$DEBUG" ]]; then
+    PS4="> ${0##*/}: "
+    set -x
+fi
 
-systemctl is-active lightdm && systemctl stop lightdm || true
+systemctl is-active lightdm >/dev/null && systemctl stop lightdm || true
 
 # setup up auto-login
 mkdir -p /etc/lightdm/lightdm.conf.d
@@ -63,11 +65,10 @@ echo 1 >tracing_on
 cleanup_acts="echo >/sys/kernel/debug/tracing/trace; $cleanup_acts"
 cleanup_acts="echo 0 >/sys/kernel/debug/tracing/tracing_on; $cleanup_acts"
 
-# launch DDE
+# before launching DDE, drop pagecache
 start_time=$(date +%s)
+echo 1 >/proc/sys/vm/drop_caches
 systemctl start lightdm
-
-echo eol_lock is: \'$eol_lock\'
 
 # wait for the launching of desktop
 read end_time <$eol_lock
@@ -80,4 +81,4 @@ cat /sys/kernel/debug/tracing/trace >dde-launch-time.log
 
 set +x
 
-echo DDE launching time is: $((end_time-start_time))
+echo DDE launching time is: $((end_time-start_time)) seconds
