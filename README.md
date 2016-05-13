@@ -7,12 +7,12 @@ How to use this script
 ====
 After your target system booted up, ssh into it (recommended way), run
 ```
-$ sudo AUTO_LOGIN_USER=derekdai DEBUG=1 ./dde-launch-time
+$ sudo AUTO_LOGIN_USER=deepin DEBUG=1 ./dde-launch-time
 > dde-launch-time: systemctl is-active lightdm
 > dde-launch-time: systemctl stop lightdm
 > dde-launch-time: mkdir -p /etc/lightdm/lightdm.conf.d
 > dde-launch-time: echo '[SeatDefaults]
-autologin-user=derekdai
+autologin-user=deepin
 '
 > dde-launch-time: cleanup_acts='unlink
 > '\''/etc/lightdm/lightdm.conf.d/auto-login.conf'\'''
@@ -20,7 +20,7 @@ autologin-user=derekdai
 >> dde-launch-time: mktemp -u /tmp/XXXXXX
 > dde-launch-time: eol_lock=/tmp/tiiNbc
 > dde-launch-time: mkfifo /tmp/tiiNbc
-> dde-launch-time: chown derekdai /tmp/tiiNbc
+> dde-launch-time: chown deepin /tmp/tiiNbc
 > dde-launch-time: cleanup_acts='unlink '\''/tmp/tiiNbc'\''; unlink
 > '\''/etc/lightdm/lightdm.conf.d/auto-login.conf'\'''
 > dde-launch-time: echo '[Desktop Entry]
