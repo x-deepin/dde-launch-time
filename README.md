@@ -7,6 +7,7 @@ How to use this script
 ====
 After your target system booted up, ssh into it (recommended way), run
 ```
+$ sudo AUTO_LOGIN_USER=derekdai DEBUG=1 ./dde-launch-time
 > dde-launch-time: systemctl is-active lightdm
 > dde-launch-time: systemctl stop lightdm
 > dde-launch-time: mkdir -p /etc/lightdm/lightdm.conf.d
