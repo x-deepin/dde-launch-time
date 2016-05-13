@@ -16,4 +16,4 @@ params:
 
 run:
     steps:
-        - source ./dde-launch-time
+        - AUTO_LOGIN_USER=slave DEBUG=yes ./dde-launch-time
