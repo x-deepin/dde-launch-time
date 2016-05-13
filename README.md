@@ -1,6 +1,6 @@
 How to use this script
 ====
-After your target system booted up, ssh into it, run
+After your target system booted up, ssh into it (recommended way), run
 ```
 $ sudo AUTO_LOGIN_USER=deepin DEBUG=1 ./dde-launch-time 
 > dde-launch-time: systemctl is-active lightdm
@@ -63,7 +63,7 @@ DDE launching time is: 1 seconds
 ```
 
 * `AUTO_LOGIN_USER=deepin`: the user name which is used to launch DDE
-* DEBUG=1: if DEBUG contains non-empty string, run dde-launch-time in tracing mode
+* `DEBUG=1`: if DEBUG contains non-empty string, run dde-launch-time in tracing mode
 
 If you want to figure out what casuse DDE took so long to launch, the kernel
 tracing log is saved in currently directory, named dde-launch-time.log.
