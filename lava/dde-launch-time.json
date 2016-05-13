@@ -1,0 +1,46 @@
+{
+    "actions": [
+        {
+            "command": "deploy_linaro_kernel",
+            "parameters": {
+                "bootloadertype": "ipxe",
+                "kernel": "http://10.3.2.1/vmlinuz",
+                "ramdisk": "http://10.3.2.1/initrd",
+                "target_type": "ubuntu"
+            }
+        },
+        {
+            "command": "boot_linaro_image",
+            "parameters": {
+                "boot_cmds": [
+                    "dhcp net0",
+                    "kernel http://{SERVER_IP}/tmp/{KERNEL} root=/dev/nfs rw nfsroot=10.3.2.1:/srv/nfs/deepin-15-20160604,tcp,hard,intr console=ttyS1,115200n8 ip=dhcp",
+                    "initrd http://{SERVER_IP}/tmp/{RAMDISK}",
+                    "boot"
+                ]
+            }
+        },
+        {
+            "command": "lava_test_shell",
+            "parameters": {
+                "testdef_repos": [
+                    {
+                        "git-repo": "https://github.com/x-deepin/dde-launch-time.git",
+                        "testdef": "lava/dde-launch-time.yaml"
+                    }
+                ],
+                "timeout": 900
+            }
+        },
+        {
+            "command": "submit_results",
+            "parameters": {
+                "server": "http://10.3.2.1/RPC2/",
+                "stream": "/anonymous/perf-launch-time"
+            }
+        }
+    ],
+    "job_name": "meach-dde-launch-time",
+    "target": "vm1",
+    "timeout": 18000
+}

@@ -1,0 +1,19 @@
+metadata:
+    name: measure-dde-launch-time
+    format: "Lava-Test-Shell Test Definition 1.0"
+    description: "A Test Definition To Measure DDE Launch Time"
+    os:
+        - ubuntu
+    devices:
+        - vm1
+    scope:
+        - performance
+    environment:
+        - lava-test-shell
+
+params:
+    AUTO_LOGIN_USER: deepin
+
+run:
+    steps:
+        - source ./dde-launch-time
