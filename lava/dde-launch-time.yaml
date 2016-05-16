@@ -16,4 +16,5 @@ params:
 
 run:
     steps:
-        - AUTO_LOGIN_USER=slave DEBUG=yes ./dde-launch-time
+        - useradd -m deepin
+        - AUTO_LOGIN_USER=deepin DEBUG=yes ./dde-launch-time
