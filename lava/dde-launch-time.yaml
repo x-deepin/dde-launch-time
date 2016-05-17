@@ -25,11 +25,11 @@ install:
 run:
     steps:
         - "export AUTO_LOGIN_USER" 
-        - "DEBUG=yes TRACE_FILE=\"$PWD/run1.trace\" ./dde-launch-time >>results"
-        - "DEBUG=yes TRACE_FILE=\"$PWD/run2.trace\" ./dde-launch-time >>results"
-        - "DEBUG=yes TRACE_FILE=\"$PWD/run3.trace\" ./dde-launch-time >>results"
-        - "DEBUG=yes TRACE_FILE=\"$PWD/run4.trace\" ./dde-launch-time >>results"
-        - "DEBUG=yes TRACE_FILE=\"$PWD/run5.trace\" ./dde-launch-time >>results"
+        - "DEBUG=yes TRACE_FILE=\"$PWD/run1.trace\" timeout 180 ./dde-launch-time >>results"
+        - "DEBUG=yes TRACE_FILE=\"$PWD/run2.trace\" timeout 180 ./dde-launch-time >>results"
+        - "DEBUG=yes TRACE_FILE=\"$PWD/run3.trace\" timeout 180 ./dde-launch-time >>results"
+        - "DEBUG=yes TRACE_FILE=\"$PWD/run4.trace\" timeout 180 ./dde-launch-time >>results"
+        - "DEBUG=yes TRACE_FILE=\"$PWD/run5.trace\" timeout 180 ./dde-launch-time >>results"
         - "lava-test-run-attach results text/plain"
         - "lava-test-run-attach run1.trace text/plain"
         - "lava-test-run-attach run2.trace text/plain"
