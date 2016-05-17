@@ -20,5 +20,10 @@ install:
 
 run:
     steps:
-        - useradd -m deepin
-        - AUTO_LOGIN_USER=deepin DEBUG=yes ./dde-launch-time
+        - "useradd -m deepin"
+        - "AUTO_LOGIN_USER=deepin DEBUG=yes ./dde-launch-time >>results"
+        - "AUTO_LOGIN_USER=deepin DEBUG=yes ./dde-launch-time >>results"
+        - "AUTO_LOGIN_USER=deepin DEBUG=yes ./dde-launch-time >>results"
+        - "AUTO_LOGIN_USER=deepin DEBUG=yes ./dde-launch-time >>results"
+        - "AUTO_LOGIN_USER=deepin DEBUG=yes ./dde-launch-time >>results"
+        - "lava-test-run-attach results text/plain"
