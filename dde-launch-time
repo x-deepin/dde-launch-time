@@ -17,13 +17,6 @@ fi
 
 systemctl is-active lightdm >/dev/null && systemctl stop lightdm || true
 
-# setup up auto-login
-mkdir -p /etc/lightdm/lightdm.conf.d
-echo "[SeatDefaults]
-autologin-user=$AUTO_LOGIN_USER
-" >/etc/lightdm/lightdm.conf.d/auto-login.conf
-
-cleanup_acts="unlink '/etc/lightdm/lightdm.conf.d/auto-login.conf'"
 trap 'eval $cleanup_acts' EXIT
 
 # prepare end of laucnhing lock for notifying the test procedure is finished
