@@ -24,6 +24,7 @@ install:
 
 run:
     steps:
+        - "export AUTO_LOGIN_USER" 
         - "DEBUG=yes TRACE_FILE=\"$PWD/run1.trace\" ./dde-launch-time >>results"
         - "DEBUG=yes TRACE_FILE=\"$PWD/run2.trace\" ./dde-launch-time >>results"
         - "DEBUG=yes TRACE_FILE=\"$PWD/run3.trace\" ./dde-launch-time >>results"
