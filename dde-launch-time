@@ -71,7 +71,10 @@ echo 1 >/proc/sys/vm/drop_caches
 systemctl start lightdm
 
 # wait for the launching of desktop
-read end_time <$eol_lock
+if read -t 180 end_time <$eol_lock; then
+    echo timed out >&2
+    exit 1
+fi
 
 # stop tracing and get log from kernel ring buffer
 echo 0 >tracing_on
