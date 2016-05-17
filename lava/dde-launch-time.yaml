@@ -16,7 +16,7 @@ params:
 
 install:
     deps:
-        bc
+        - bc
 
 run:
     steps:
