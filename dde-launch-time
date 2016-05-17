@@ -36,7 +36,7 @@ cleanup_acts="unlink '$eol_lock'; $cleanup_acts"
 echo "[Desktop Entry]
 Name=End Of Launching Notification
 Type=Application
-Exec=/bin/bash -c '/bin/date +%%s >$eol_lock'
+Exec=/bin/bash -c '/bin/date +%%s.%%N >$eol_lock'
 " >/etc/xdg/autostart/end-of-launching.desktop
 cleanup_acts="unlink '/etc/xdg/autostart/end-of-launching.desktop'; $cleanup_acts"
 
@@ -66,7 +66,7 @@ cleanup_acts="echo >/sys/kernel/debug/tracing/trace; $cleanup_acts"
 cleanup_acts="echo 0 >/sys/kernel/debug/tracing/tracing_on; $cleanup_acts"
 
 # before launching DDE, drop pagecache
-start_time=$(date +%s)
+start_time=$(date +%s.%N)
 echo 1 >/proc/sys/vm/drop_caches
 systemctl start lightdm
 
@@ -81,4 +81,4 @@ cat /sys/kernel/debug/tracing/trace >dde-launch-time.log
 
 set +x
 
-echo DDE launching time is: $((end_time-start_time)) seconds
+echo "$end_time-$start_time" | bc
