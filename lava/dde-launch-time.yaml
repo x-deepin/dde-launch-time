@@ -17,15 +17,18 @@ params:
 install:
     deps:
         - bc
+    steps:
+        - "mkdir -p /etc/lightdm/lightdm.conf.d"
+        - 'echo -e "[SeatDefaults]\nautologin-user=$AUTO_LOGIN_USER" >/etc/lightdm/lightdm.conf.d/auto-login.conf'
+        - "useradd -m deepin"
 
 run:
     steps:
-        - "useradd -m deepin"
-        - "AUTO_LOGIN_USER=deepin DEBUG=yes TRACE_FILE=\"$PWD/run1.trace\" ./dde-launch-time >>results"
-        - "AUTO_LOGIN_USER=deepin DEBUG=yes TRACE_FILE=\"$PWD/run2.trace\" ./dde-launch-time >>results"
-        - "AUTO_LOGIN_USER=deepin DEBUG=yes TRACE_FILE=\"$PWD/run3.trace\" ./dde-launch-time >>results"
-        - "AUTO_LOGIN_USER=deepin DEBUG=yes TRACE_FILE=\"$PWD/run4.trace\" ./dde-launch-time >>results"
-        - "AUTO_LOGIN_USER=deepin DEBUG=yes TRACE_FILE=\"$PWD/run5.trace\" ./dde-launch-time >>results"
+        - "DEBUG=yes TRACE_FILE=\"$PWD/run1.trace\" ./dde-launch-time >>results"
+        - "DEBUG=yes TRACE_FILE=\"$PWD/run2.trace\" ./dde-launch-time >>results"
+        - "DEBUG=yes TRACE_FILE=\"$PWD/run3.trace\" ./dde-launch-time >>results"
+        - "DEBUG=yes TRACE_FILE=\"$PWD/run4.trace\" ./dde-launch-time >>results"
+        - "DEBUG=yes TRACE_FILE=\"$PWD/run5.trace\" ./dde-launch-time >>results"
         - "lava-test-run-attach results text/plain"
         - "lava-test-run-attach run1.trace text/plain"
         - "lava-test-run-attach run2.trace text/plain"
