@@ -32,8 +32,3 @@ run:
         - "DEBUG=yes TRACE_FILE=\"$PWD/run4.trace\" timeout 180 ./dde-launch-time >>results"
         - "DEBUG=yes TRACE_FILE=\"$PWD/run5.trace\" timeout 180 ./dde-launch-time >>results"
         - "lava-test-run-attach results text/plain"
-        - "lava-test-run-attach run1.trace text/plain"
-        - "lava-test-run-attach run2.trace text/plain"
-        - "lava-test-run-attach run3.trace text/plain"
-        - "lava-test-run-attach run4.trace text/plain"
-        - "lava-test-run-attach run5.trace text/plain"
